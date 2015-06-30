@@ -37,19 +37,48 @@ class ParseHelper{
     
     static func timelineRequestforCurrentUser(completionBlock: PFArrayResultBlock) {
         let followingQuery = PFQuery(className: ParseFollowClass)
-        followingQuery.whereKey("fromUser", equalTo: PFUser.currentUser()!)
+        followingQuery.whereKey(ParseLikeFromUser, equalTo:PFUser.currentUser()!)
         
         let postsFromFollowedUsers = Post.query()
-        postsFromFollowedUsers!.whereKey("user", matchesKey: "toUser", inQuery: followingQuery)
+        postsFromFollowedUsers!.whereKey(ParsePostUser, matchesKey: ParseFollowToUser, inQuery: followingQuery)
         
         let postsFromThisUser = Post.query()
-        postsFromThisUser!.whereKey("user", equalTo: PFUser.currentUser()!)
+        postsFromThisUser!.whereKey(ParsePostUser, equalTo: PFUser.currentUser()!)
         
         let query = PFQuery.orQueryWithSubqueries([postsFromFollowedUsers!, postsFromThisUser!])
-        query.includeKey("user")
-        query.orderByDescending("createdAt")
+        query.includeKey(ParsePostUser)
+        query.orderByDescending(ParsePostCreatedAt)
         
         query.findObjectsInBackgroundWithBlock(completionBlock)
+    }
+    
+    //MARK: Likes
+    static func likePost(user: PFUser, post: Post) {
+        let likeObject = PFObject(className: ParseLikeClass)
+        likeObject[ParseLikeFromUser] = user
+        likeObject[ParseLikeToPost] = post
         
+        likeObject.saveInBackgroundWithBlock(nil)
+    }
+    static func unLikePost(user: PFUser, post:Post){
+        let allLikes = PFQuery(className: ParseLikeClass)
+        allLikes.whereKey(ParseLikeFromUser, equalTo: user)
+        allLikes.whereKey(ParseLikeToPost, equalTo: post)
+        
+        allLikes.findObjectsInBackgroundWithBlock{ (results: [AnyObject]?, error: NSError?) -> Void in
+            if let results = results as? [PFObject] {
+                for likes in results {
+                    likes.deleteInBackgroundWithBlock(nil)
+                }
+            }
+        }
+    }
+    static func likesForPost(post: Post, completionBlock: PFArrayResultBlock) {
+        let query = PFQuery(className: ParseLikeClass)
+        query.whereKey(ParseLikeToPost, equalTo: post)
+        // 2
+        query.includeKey(ParseLikeFromUser)
+        
+        query.findObjectsInBackgroundWithBlock(completionBlock)
     }
 }
