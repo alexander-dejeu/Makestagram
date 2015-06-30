@@ -157,6 +157,7 @@
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="D2h-lc-5Kz" id="VmC-4K-Nn8"/>
+                                    <outlet property="delegate" destination="D2h-lc-5Kz" id="IWu-ed-BNB"/>
                                 </connections>
                             </tableView>
                         </subviews>

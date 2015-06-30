@@ -7,33 +7,42 @@
 //
 
 import UIKit
+import ConvenienceKit
 import Parse
 
-class TimelineViewController: UIViewController {
+class TimelineViewController: UIViewController, TimelineComponentTarget {
+    
     
     @IBOutlet weak var tableView: UITableView!
+
+    var timelineComponent: TimelineComponent<Post, TimelineViewController>!
+    let defaultRange = 0...4
+    let additionalRangeSize = 5
     
-    
-    var posts: [Post] = []
     let postsQuery = Post.query()
     var photoTakingHelper: PhotoTakingHelper?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        timelineComponent = TimelineComponent(target: self)
         self.tabBarController?.delegate = self
+    }
+    
+    func loadInRange(range: Range<Int>, completionBlock: ([Post]?) -> Void) {
+        // 1
+        ParseHelper.timelineRequestforCurrentUser(range) {
+            (result: [AnyObject]?, error: NSError?) -> Void in
+            // 2
+            let posts = result as? [Post] ?? []
+            // 3
+            completionBlock(posts)
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        ParseHelper.timelineRequestforCurrentUser {
-            (result: [AnyObject]?, error: NSError?) -> Void in
-            self.posts = result as? [Post] ?? []
-    
-            self.tableView.reloadData()
-        }
-        
+        timelineComponent.loadInitialIfRequired()
     }
     
     override func didReceiveMemoryWarning() {
@@ -51,6 +60,8 @@ class TimelineViewController: UIViewController {
         }
     }
     
+    
+    
     /*
     // MARK: - Navigation
     
@@ -63,7 +74,14 @@ class TimelineViewController: UIViewController {
     
 }
 
-
+extension TimelineViewController: UITableViewDelegate {
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        timelineComponent.targetWillDisplayEntry(indexPath.row)
+    }
+    
+}
 //Mark: Tab Bar Delegate
 
 extension TimelineViewController: UITabBarControllerDelegate {
@@ -84,14 +102,14 @@ extension TimelineViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // 1
-        return posts.count
+        return timelineComponent.content.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // 2
         let cell = tableView.dequeueReusableCellWithIdentifier("PostCell") as! PostTableViewCell
         
-        let post = posts[indexPath.row]
+        let post = timelineComponent.content[indexPath.row]
         post.downloadImage()
         post.fetchLikes()
         cell.post = post
