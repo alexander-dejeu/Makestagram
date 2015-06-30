@@ -46,6 +46,7 @@
 		FA99D8071B4095B90094AC06 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA99D8061B4095B90094AC06 /* Post.swift */; };
 		FA99D80F1B410D8A0094AC06 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA99D80E1B410D8A0094AC06 /* PostTableViewCell.swift */; };
 		FA99D8111B41BC160094AC06 /* ParseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA99D8101B41BC160094AC06 /* ParseHelper.swift */; };
+		FA99D8201B434A500094AC06 /* FriendSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA99D81F1B434A500094AC06 /* FriendSearchTableViewCell.swift */; };
 		FAD9570D1B3DCA21008354B0 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD9570C1B3DCA21008354B0 /* TimelineViewController.swift */; };
 		FAD9570F1B3DCA52008354B0 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD9570E1B3DCA52008354B0 /* PhotoViewController.swift */; };
 		FAD957111B3DCA68008354B0 /* FriendSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD957101B3DCA68008354B0 /* FriendSearchViewController.swift */; };
@@ -191,6 +192,7 @@
 		FA99D8061B4095B90094AC06 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		FA99D80E1B410D8A0094AC06 /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		FA99D8101B41BC160094AC06 /* ParseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseHelper.swift; sourceTree = "<group>"; };
+		FA99D81F1B434A500094AC06 /* FriendSearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendSearchTableViewCell.swift; sourceTree = "<group>"; };
 		FAD9570C1B3DCA21008354B0 /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		FAD9570E1B3DCA52008354B0 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		FAD957101B3DCA68008354B0 /* FriendSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendSearchViewController.swift; sourceTree = "<group>"; };
@@ -399,6 +401,7 @@
 		FA99D8081B410CCD0094AC06 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FA99D81E1B434A420094AC06 /* FriendSearch */,
 				FA99D8091B410CCD0094AC06 /* Timeline */,
 			);
 			path = Views;
@@ -410,6 +413,14 @@
 				FA99D80E1B410D8A0094AC06 /* PostTableViewCell.swift */,
 			);
 			path = Timeline;
+			sourceTree = "<group>";
+		};
+		FA99D81E1B434A420094AC06 /* FriendSearch */ = {
+			isa = PBXGroup;
+			children = (
+				FA99D81F1B434A500094AC06 /* FriendSearchTableViewCell.swift */,
+			);
+			path = FriendSearch;
 			sourceTree = "<group>";
 		};
 		FAD957121B3DF254008354B0 /* PhotoTaking */ = {
@@ -607,6 +618,7 @@
 				FAD9570D1B3DCA21008354B0 /* TimelineViewController.swift in Sources */,
 				FAD957141B3DF3BC008354B0 /* PhotoTakingHelper.swift in Sources */,
 				FAD9570F1B3DCA52008354B0 /* PhotoViewController.swift in Sources */,
+				FA99D8201B434A500094AC06 /* FriendSearchTableViewCell.swift in Sources */,
 				62C8C1E61B06BD6500DC3EA7 /* AppDelegate.swift in Sources */,
 				627718971B0A581700AF5C6E /* FilterViewController.swift in Sources */,
 				FA99D8111B41BC160094AC06 /* ParseHelper.swift in Sources */,
