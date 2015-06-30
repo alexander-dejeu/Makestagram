@@ -15,9 +15,15 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var likesLabel: UILabel!
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var moreButton: UIButton!
-    
-    
     @IBOutlet weak var postImageView: UIImageView!
+    
+    @IBAction func moreButtonTapped(sender: AnyObject) {
+        
+    }
+    
+    @IBAction func likeButtonTapped(sender: AnyObject) {
+        
+    }
     
     var post: Post?{
         didSet{

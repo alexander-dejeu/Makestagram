@@ -85,6 +85,9 @@
                                                     <state key="normal" image="More">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="moreButtonTapped:" destination="Vdp-Xb-eFg" eventType="touchUpInside" id="Nfd-WP-tQc"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r50-Pa-Kta">
                                                     <rect key="frame" x="552" y="547" width="44" height="44"/>
@@ -97,6 +100,9 @@
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <state key="selected" image="Heart-selected"/>
+                                                    <connections>
+                                                        <action selector="likeButtonTapped:" destination="Vdp-Xb-eFg" eventType="touchUpInside" id="Qln-ZL-YL8"/>
+                                                    </connections>
                                                 </button>
                                                 <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Heart" translatesAutoresizingMaskIntoConstraints="NO" id="YDS-HX-51f">
                                                     <rect key="frame" x="13" y="497" width="20" height="20"/>
@@ -141,6 +147,10 @@
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="likeButton" destination="r50-Pa-Kta" id="L8e-Tz-zyZ"/>
+                                            <outlet property="likesIconImageView" destination="YDS-HX-51f" id="hbm-Gi-8q6"/>
+                                            <outlet property="likesLabel" destination="hKU-uJ-Bi9" id="sfG-VM-X6A"/>
+                                            <outlet property="moreButton" destination="Nt6-dQ-5fA" id="cVT-yL-gRv"/>
                                             <outlet property="postImageView" destination="aNT-Np-KDy" id="qbr-xa-pah"/>
                                         </connections>
                                     </tableViewCell>
